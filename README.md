@@ -206,118 +206,118 @@ Esse modelo físico pode ser gerado por meio do código em sql, que para acessar
 Por meio de todos os modelos produzidos é possível descrever essa arquitetura em suas entidades e relacionamentos.
 
 ### 3.1. Entidades
-
 - **Users** (`users`): Armazena informações básicas sobre os usuários.
-    - **id:** Identificador único do usuário (chave primária).
-    - **name:** Nome do usuário.
-    - **email:** Endereço de e-mail do usuário.
-    - **password:** Senha do usuário.
-    - **role:** Papel ou função do usuário no sistema.
-    - **first_name:** Primeiro nome do usuário.
-    - **last_name:** Sobrenome do usuário.
-    - **social_name:** Nome social do usuário.
-    - **phone:** Número de telefone do usuário.
+    - **id** (`SERIAL`): Identificador único do usuário (chave primária).
+    - **name** (`VARCHAR(255)`): Nome do usuário.
+    - **email** (`VARCHAR(255)`): Endereço de e-mail do usuário.
+    - **password** (`VARCHAR(255)`): Senha do usuário.
+    - **role** (`VARCHAR(4)`): Papel ou função do usuário no sistema.
+    - **first_name** (`VARCHAR(50)`): Primeiro nome do usuário.
+    - **last_name** (`VARCHAR(255)`): Sobrenome do usuário.
+    - **social_name** (`VARCHAR(255)`): Nome social do usuário.
+    - **phone** (`VARCHAR(50)`): Número de telefone do usuário.
 
-- **Review Form** (``review_form`): formulário de resenha com informações gerais dos usuários.
-    - **id:** Identificador único do formulário de revisão (chave primária).
-    - **id_users:** Chave estrangeira vinculada ao ID do usuário.
-    - **age:** Idade do usuário.
-    - **gender:** Gênero do usuário.
-    - **education:** Nível de educação do usuário.
-    - **housing:** Tipo de moradia do usuário.
-    - **family_composition:** Composição familiar do usuário.
-    - **income_bracket:** Faixa de renda do usuário.
-    - **household_members:** Número de membros no domicílio do usuário.
-    - **country:** País de residência do usuário.
-    - **state:** Estado de residência do usuário.
-    - **city:** Cidade de residência do usuário.
-    - **neighborhood:** Bairro de residência do usuário.
+- **Review Form** (`review_form`): formulário de resenha com informações gerais dos usuários.
+    - **id** (`SERIAL`): Identificador único do formulário de revisão (chave primária).
+    - **user_id** (`INTEGER`): Chave estrangeira vinculada ao ID do usuário.
+    - **age** (`INTEGER`): Idade do usuário.
+    - **gender** (`VARCHAR(50)`): Gênero do usuário.
+    - **education** (`VARCHAR(50)`): Nível de educação do usuário.
+    - **housing** (`VARCHAR(50)`): Tipo de moradia do usuário.
+    - **family_composition** (`VARCHAR(255)`): Composição familiar do usuário.
+    - **income_bracket** (`INTEGER`): Faixa de renda do usuário.
+    - **household_members** (`INTEGER`): Número de membros no domicílio do usuário.
+    - **country** (`VARCHAR(50)`): País de residência do usuário.
+    - **state** (`VARCHAR(50)`): Estado de residência do usuário.
+    - **city** (`VARCHAR(50)`): Cidade de residência do usuário.
+    - **neighborhood** (`VARCHAR(50)`): Bairro de residência do usuário.
 
 - **Present Form** (`present_form`): formulário a ser respondido pelos tutores que possuem cachorro.
-    - **id:** Identificador único do formulário presente (chave primária).
-    - **id_users:** Chave estrangeira vinculada ao ID do usuário.
-    - **dog_name:** Nome do cachorro.
-    - **gender:** Gênero do cachorro.
-    - **belongs_to:** A quem o cachorro pertence.
-    - **neutered:** Indicador se o cachorro é castrado.
-    - **neuter_date:** Data da castração.
-    - **cohabitation_duration:** Duração da coabitação com o cachorro.
-    - **first_dog:** Indica se é o primeiro cachorro do usuário.
-    - **dog_count:** Número de cachorros.
-    - **cat_count:** Número de gatos.
-    - **dog_age:** Idade do cachorro.
-    - **breed:** Raça do cachorro.
-    - **acquisition_source:** Fonte de aquisição do cachorro.
-    - **paid:** Indica se houve pagamento pelo cachorro.
-    - **age_arrived:** Idade do cachorro quando chegou.
-    - **dog_personality:** Personalidade do cachorro.
-    - **dog_characteristics:** Características do cachorro.
-    - **adoption_agents:** Agentes de adoção.
-    - **other_dog:** Outros cachorros.
-    - **vet_visits:** Visitas ao veterinário.
-    - **about_dog:** Informações adicionais sobre o cachorro.
+    - **id** (`SERIAL`): Identificador único do formulário presente (chave primária).
+    - **user_id** (`INTEGER`): Chave estrangeira vinculada ao ID do usuário.
+    - **dog_name** (`VARCHAR(50)`): Nome do cachorro.
+    - **gender** (`VARCHAR(50)`): Gênero do cachorro.
+    - **belongs_to** (`VARCHAR(50)`): A quem o cachorro pertence.
+    - **neutered** (`BOOLEAN`): Indicador se o cachorro é castrado.
+    - **neuter_date** (`DATE`): Data da castração.
+    - **cohabitation_duration** (`INTEGER`): Duração da coabitação com o cachorro.
+    - **first_dog** (`BOOLEAN`): Indica se é o primeiro cachorro do usuário.
+    - **dog_count** (`INTEGER`): Número de cachorros.
+    - **cat_count** (`INTEGER`): Número de gatos.
+    - **dog_age** (`INTEGER`): Idade do cachorro.
+    - **breed** (`VARCHAR(255)`): Raça do cachorro.
+    - **acquisition_source** (`VARCHAR(255)`): Fonte de aquisição do cachorro.
+    - **paid** (`BOOLEAN`): Indica se houve pagamento pelo cachorro.
+    - **age_arrived** (`INTEGER`): Idade do cachorro quando chegou.
+    - **dog_personality** (`TEXT`): Personalidade do cachorro.
+    - **dog_characteristics** (`TEXT`): Características do cachorro.
+    - **adoption_agents** (`VARCHAR(255)`): Agentes de adoção.
+    - **other_dog** (`TEXT`): Outros cachorros.
+    - **vet_visits** (`INTEGER`): Visitas ao veterinário.
+    - **about_dog** (`TEXT`): Informações adicionais sobre o cachorro.
 
 - **Past Form** (`past_form`): formulário a ser respondido pelos tutores que não possuem cachorros, mas que já tiveram.
-    - **id:** Identificador único do formulário passado (chave primária).
-    - **id_users:** Chave estrangeira vinculada ao ID do usuário.
-    - **dog_name:** Nome do cachorro anterior.
-    - **belongs_to:** A quem o cachorro pertencia.
-    - **dog_personality:** Personalidade do cachorro anterior.
-    - **cohabitation_time:** Tempo de coabitação com o cachorro.
-    - **first_dog:** Indica se foi o primeiro cachorro do usuário.
-    - **cat_count:** Número de gatos durante a convivência.
-    - **dog_count:** Número de cachorros durante a convivÊncia.
-    - **dog_years:** Anos de vida do cachorro.
-    - **neutered:** Indica se o cachorro era castrado.
-    - **neuter_date:** Data da castração do cachorro.
-    - **dog_breed:** Raça do cachorro.
-    - **dog_origin:** Origem do cachorro.
-    - **paid_value:** Valor pago pelo cachorro.
-    - **pet_characteristics:** Características do pet.
-    - **adoption_agents:** Agentes de adoção envolvidos.
-    - **liked_most:**  O que mais gostava no cachorro.
-    - **liked_least:** O que menos gostava no cachorro.
-    - **vet_visits:** Indica se o cachorro visitava o veterinário.
-    - **vet_visit_count:** Número de visitas ao veterinário.
-    - **stopped_cohabitation:** Quando parou a coabitação com o cachorro.
-    - **reasons_stopped_cohabitation:** Razões para parar de conviver.
-    - **would_cohabitate_new_dog:** Disposição para conviver com novo cachorro.
+    - **id** (`SERIAL`): Identificador único do formulário passado (chave primária).
+    - **user_id** (`INTEGER`): Chave estrangeira vinculada ao ID do usuário.
+    - **dog_name** (`VARCHAR(255)`): Nome do cachorro anterior.
+    - **belongs_to** (`VARCHAR(50)`): A quem o cachorro pertencia.
+    - **dog_personality** (`TEXT`): Personalidade do cachorro anterior.
+    - **cohabitation_time** (`INTEGER`): Tempo de coabitação com o cachorro.
+    - **first_dog** (`BOOLEAN`): Indica se foi o primeiro cachorro do usuário.
+    - **cat_count** (`INTEGER`): Número de gatos durante a convivência.
+    - **dog_count** (`INTEGER`): Número de cachorros durante a convivência.
+    - **dog_years** (`INTEGER`): Anos de vida do cachorro.
+    - **neutered** (`BOOLEAN`): Indica se o cachorro era castrado.
+    - **neuter_date** (`DATE`): Data da castração do cachorro.
+    - **dog_breed** (`VARCHAR(50)`): Raça do cachorro.
+    - **dog_origin** (`VARCHAR(255)`): Origem do cachorro.
+    - **paid_value** (`VARCHAR(50)`): Valor pago pelo cachorro.
+    - **pet_characteristics** (`TEXT`): Características do pet.
+    - **adoption_agents** (`VARCHAR(255)`): Agentes de adoção envolvidos.
+    - **liked_most** (`TEXT`): O que mais gostava no cachorro.
+    - **liked_least** (`TEXT`): O que menos gostava no cachorro.
+    - **vet_visits** (`BOOLEAN`): Indica se o cachorro visitava o veterinário.
+    - **vet_visit_count** (`INTEGER`): Número de visitas ao veterinário.
+    - **stopped_cohabitation** (`DATE`): Quando parou a coabitação com o cachorro.
+    - **reasons_stopped_cohabitation** (`INTEGER`): Razões para parar de conviver.
+    - **would_cohabitate_new_dog** (`TEXT`): Disposição para conviver com novo cachorro.
 
 - **Future Form** (`future_form`): formulário a ser respondido pelos tutores que não possuem mas desejar ter um cachorro.
-    - **id:** Identificador único do formulário futuro (chave primária).
-    - **id_users:** Chave estrangeira vinculada ao ID do usuário.
-    - **dog_size:** Tamanho desejado do futuro cachorro.
-    - **dog_coat:** Tipo de pelo do futuro cachorro.
-    - **dog_color:** Cor do futuro cachorro.
-    - **dog_gender:** Gênero do futuro cachorro.
-    - **dog_age:** Idade do futuro cachorro.
-    -  **dog_breed:** Raça do futuro cachorro.
-    - **dog_name:** Nome desejado para o futuro cachorro.
-    - **name_reason:**  Razão por trás da escolha do nome.
-    - **intent:** Intenção de compra ou adoção.
-    - **when_to_buy:** Quando planeja obter o cachorro.
-    - **dog_personality:** Personalidade desejada do cachorro.
-    - **researched_expenses:** Despesas pesquisadas relacionadas ao cachorro.
+    - **id** (`SERIAL`): Identificador único do formulário futuro (chave primária).
+    - **user_id** (`INTEGER`): Chave estrangeira vinculada ao ID do usuário.
+    - **dog_size** (`VARCHAR(50)`): Tamanho desejado do futuro cachorro.
+    - **dog_coat** (`VARCHAR(50)`): Tipo de pelo do futuro cachorro.
+    - **dog_color** (`VARCHAR(50)`): Cor do futuro cachorro.
+    - **dog_gender** (`VARCHAR(50)`): Gênero do futuro cachorro.
+    - **dog_age** (`INTEGER`): Idade do futuro cachorro.
+    -  **dog_breed** (`VARCHAR(255)`): Raça do futuro cachorro.
+    - **dog_name** (`VARCHAR(255)`): Nome desejado para o futuro cachorro.
+    - **name_reason** (`TEXT`):  Razão por trás da escolha do nome.
+    - **intent** (`VARCHAR(255)`): Intenção de compra ou adoção.
+    - **when_to_buy** (`DATE`): Quando planeja obter o cachorro.
+    - **dog_personality** (`TEXT`): Personalidade desejada do cachorro.
+    - **researched_expenses** (`VARCHAR(255)`): Despesas pesquisadas relacionadas ao cachorro.
 
 - **Null Form** (`null_form`): formulário a ser respondido pelo tutor que não tem e não quer ter um cachorro.
-    - **id:** Identificador único para casos em que o usuário não deseja um cachorro (chave primária).
-    - **id_users:** Chave estrangeira vinculada ao ID do usuário.
-    - **reasons_not_want:** Razões para não querer um cachorro.
+    - **id** (`SERIAL`): Identificador único para casos em que o usuário não deseja um cachorro (chave primária).
+    - **user_id** (`INTEGER`): Chave estrangeira vinculada ao ID do usuário.
+    - **reasons_not_want** (`TEXT`): Razões para não querer um cachorro.
 
 - **Reasons For Owning Dog** (`reasons_for_owning_dog`): razões que justificam as escolhas do tutor em perguntas de múltipla escolha.
-    - **id:** Identificador único das razões para ter um cachorro (chave primária).
-    - **kids_company:** Cachorro como companhia para crianças.
-    - **adults_company:** Cachorro como companhia para adultos.
-    - **appearance:** Aparência do cachorro como fator de decisão.
-    - **dogs_company:** Cachorro como companhia para outros cachorros.
-    - **responsibility_to_children:** Ensinando responsabilidade às crianças.
-    - **friends_have:** Influência de amigos que têm cachorros.
-    - **protection:** Cachorro para proteção.
-    - **help_friend_couldnt_keep_it:** Ajuda a um amigo que não podia manter o cachorro.
-    - **save_my_life:** Cachorro que salvou a vida do dono.
-    - **was_cute:** Simplesmente porque o cachorro era fofo.
-    - **chose_me:** Sentimento de que o cachorro escolheu o dono.
-    - **gift:** Cachorro recebido como presente.
+    - **id** (`SERIAL`): Identificador único das razões para ter um cachorro (chave primária).
+    - **kids_company** (`BOOLEAN`): Cachorro como companhia para crianças.
+    - **adults_company** (`BOOLEAN`): Cachorro como companhia para adultos.
+    - **appearance** (`BOOLEAN`): Aparência do cachorro como fator de decisão.
+    - **dogs_company** (`BOOLEAN`): Cachorro como companhia para outros cachorros.
+    - **responsibility_to_children** (`BOOLEAN`): Ensinando responsabilidade às crianças.
+    - **friends_have** (`BOOLEAN`): Influência de amigos que têm cachorros.
+    - **protection** (`BOOLEAN`): Cachorro para proteção.
+    - **help_friend_couldnt_keep_it** (`BOOLEAN`): Ajuda a um amigo que não podia manter o cachorro.
+    - **save_my_life** (`BOOLEAN`): Cachorro que salvou a vida do dono.
+    - **was_cute** (`BOOLEAN`): Simplesmente porque o cachorro era fofo.
+    - **chose_me** (`BOOLEAN`): Sentimento de que o cachorro escolheu o dono.
+    - **gift** (`BOOLEAN`): Cachorro recebido como presente.
+
 
 ## Relacionamentos
 Para descrever os relacionamentos dessas entidades é necessário dividi-los entre as relações estabelecidas pelo modelo físico, sendo assim cada entidade de formulário possui um relacionamento com outra entidade que pode ser a entendidade `users` ou a entidade `reasons_for_owning_dog`.
