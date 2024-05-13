@@ -147,7 +147,7 @@ No quinto modelo conceitual, está presente a mesma entidade `users` e uma outra
 
 </div>
 
-No sexto modelo conceitual, as entidades se diferem dos modelos anteriores, sendo uma entidade `had_dog` e uma outra entidade `reasons_to_have_the_dog`, que se relacionam por uma ação chamada `contem`. Além disso, o relacionamento desse modelo possui a cardinalidade um para muitos (N:N).
+No sexto modelo conceitual, as entidades se diferem dos modelos anteriores, sendo uma entidade `had_dog` e uma outra entidade `reasons_to_have_the_dog`, que se relacionam por uma ação chamada `contem`. Além disso, o relacionamento desse modelo possui a cardinalidade um para um (1:1).
 
 <div align="center" width="100%">
 
@@ -159,7 +159,7 @@ No sexto modelo conceitual, as entidades se diferem dos modelos anteriores, send
 
 </div>
 
-No sétimo modelo conceitual, as entidades presentes são `have_dog` e `reasons_to_have_the_dog`, que se relacionam por uma ação chamada `contem`. Além disso, o relacionamento desse modelo possui a cardinalidade um para muitos (N:N).
+No sétimo modelo conceitual, as entidades presentes são `have_dog` e `reasons_to_have_the_dog`, que se relacionam por uma ação chamada `contem`. Além disso, o relacionamento desse modelo possui a cardinalidade um para um (1:1).
 
 <div align="center" width="100%">
 
@@ -171,7 +171,7 @@ No sétimo modelo conceitual, as entidades presentes são `have_dog` e `reasons_
 
 </div>
 
-Por fim, no último modelo conceitual, as entidades presentes são `want_dog` e `reasons_to_have_the_dog`, que se relacionam por uma ação chamada `contem`. Além disso, o relacionamento desse modelo possui a cardinalidade um para muitos (N:N).
+Por fim, no último modelo conceitual, as entidades presentes são `want_dog` e `reasons_to_have_the_dog`, que se relacionam por uma ação chamada `contem`. Além disso, o relacionamento desse modelo possui a cardinalidade um para um (1:1).
 
 ### 2.2. Modelo Lógico
 Considerando os modelos conceituais, foi possível desenvolver o modelo lógico utilizando o software <a href="https://sql.toad.cz/">SQL Designer</a>
@@ -354,9 +354,9 @@ A cardinalidade do relacionamento entre `present_form` e `users` é um para muit
 - Cada usuário pode possuir um ou mais cachorros, onde um lado (usuários) pode ter múltiplas correspondências no outro lado (cachorros).
 - Cada registro na tabela `present_form` está vinculado a exatamente um usuário, garantindo que cada cachorro é registrado sob um único dono.
 
-Enquanto isso, a cardinalidade do relacionamento entre `present_form` e `reasons_for_owning_dog` é muitos para muitos (N:N), isso porque:
-- Cada cachorro pode ter múltiplas razões associadas a ele sobre por que ele é mantido.
-- Cada razão para ter um cachorro pode ser associada a vários cachorros. Isso implica que as mesmas razões podem ser aplicáveis a diferentes cachorros pertencentes a vários usuários.
+Enquanto isso, a cardinalidade do relacionamento entre `present_form` e `reasons_for_owning_dog` é um para um (1:1), isso porque:
+- Cada entrada em `present_form` está vinculada a exatamente uma entrada em `reasons_to_have_the_dog`. Isso implica que para cada cachorro registrado, há uma única razão específica registrada sobre por que o cachorro é mantido.
+- Cada razão em `reasons_to_have_the_dog` está conectada a exatamente um registro em `present_form`. Isto indica que cada razão é exclusiva para um único cachorro no sistema.
 
 ### Relacionamento entre `past_form`, `users` e `reasons_for_owning_dog`
 
@@ -374,9 +374,9 @@ A cardinalidade do relacionamento entre `past_form` e `users` é um para muitos 
 - Cada usuário pode ter um ou mais cachorros. Isso permite aos usuários terem múltiplos registros de cachorros associados a eles.
 - Cada registro de cachorro está vinculado a exatamente um usuário. Isso garante que cada cachorro listado no sistema seja único para um usuário, sem compartilhamento entre diferentes usuários.
 
-Enquanto isso, a cardinalidade do relacionamento entre `past_form` e `reasons_for_owning_dog` é muitos para muitos (N:N), isso porque:
-- Cada cachorro pode ter múltiplas razões associadas a ele sobre por que ele foi mantido.
-- Cada razão para ter tido um cachorro pode ser associada a vários cachorros. Isso implica que as mesmas razões podem ser aplicáveis a diferentes cachorros pertencentes a vários usuários.
+Enquanto isso, a cardinalidade do relacionamento entre `past_form` e `reasons_for_owning_dog` é um para um (1:1), isso porque:
+- Cada registro de cachorro em `past_form` está vinculado a uma única razão na tabela `reasons_to_have_the_dog`. 
+- Cada razão na tabela `reasons_to_have_the_dog` é associada a um único cachorro na tabela `past_form`. 
 
 ### Relacionamento entre `future_form`, `users` e `reasons_for_owning_dog`
 
@@ -393,9 +393,9 @@ A cardinalidade do relacionamento entre `future_form` e `users` é um para muito
 - Cada usuário pode preencher múltiplas preferências sobre o tipo de cachorro que deseja. 
 - Cada registro na tabela future_form está associado a exatamente um usuário.
 
-Enquanto isso, a cardinalidade do relacionamento entre `past_form` e `reasons_for_owning_dog` é muitos para muitos (N:N), isso porque:
-- Cada preferência de usuário por ter um cachorro pode estar associada a múltiplas razões listadas em reasons_to_have_the_dog. 
-- Cada razão para ter um cachorro pode ser associada a várias preferências de diferentes usuários. Isso significa que as mesmas razões podem ser comuns entre diversos usuários que querem um cachorro.
+Enquanto isso, a cardinalidade do relacionamento entre `future_form` e `reasons_for_owning_dog` é um para um (1:1), isso porque:
+- Cada registro em `future_form` está diretamente associado a um registro em `reasons_for_owning_dog`, e vice-versa. Isso significa que para cada cachorro, existe uma única e específica razão associada a ele dentro do sistema.
+- Cada razão documentada em `reasons_for_owning_dog` está vinculada a um único cachorro em `future_form`, indicando que não há compartilhamento de razões entre diferentes cachorros.
 
 ### Relacionamento entre `null_form` e `users`
 
